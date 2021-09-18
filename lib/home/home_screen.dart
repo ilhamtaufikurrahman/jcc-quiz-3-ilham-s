@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:jabar_coding_camp/home/model.dart';
 
 class Homescreen extends StatefulWidget {
   final String value;
@@ -63,11 +64,25 @@ class _HomescreenState extends State<Homescreen> {
             SizedBox(height: 10),
             //#soal 3 silahkan buat coding disini
             //untuk container boleh di pake/dimodifikasi
-            Container(
-                height: MediaQuery.of(context).size.height / 1.5,
-                child: Center() //silahkan dilanjutkan disini
-                ),
-
+            Expanded(
+              child: GridView.builder(
+                  itemCount: items.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                  ),
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: Column(children: [
+                        Image.network(
+                          items[index].profileUrl,
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.cover,
+                        )
+                      ]),
+                    );
+                  }),
+            ),
             //sampai disini soal 3
           ],
         ),
@@ -86,9 +101,11 @@ Widget myWidget(BuildContext context) {
         ),
         itemCount: 300,
         itemBuilder: (BuildContext context, int index) {
-          return Card(
-            color: Colors.amber,
-            child: Center(child: Text('$index')),
+          return Container(
+            alignment: Alignment.center,
+            child: Text(items[index].name),
+            decoration: BoxDecoration(
+                color: Colors.amber, borderRadius: BorderRadius.circular(15)),
           );
         }),
   );
