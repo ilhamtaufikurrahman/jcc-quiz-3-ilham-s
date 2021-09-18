@@ -72,14 +72,20 @@ class _HomescreenState extends State<Homescreen> {
                   ),
                   itemBuilder: (context, index) {
                     return Card(
-                      child: Column(children: [
-                        Image.network(
-                          items[index].profileUrl,
-                          width: 50,
-                          height: 50,
-                          fit: BoxFit.cover,
-                        )
-                      ]),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Image.network(
+                              items[index].profileUrl,
+                              width: 50,
+                              height: 50,
+                              fit: BoxFit.cover,
+                            ),
+                            Text(items[index].name),
+                            Text(items[index].price.toString()),
+                            ElevatedButton(
+                                onPressed: () {}, child: Text('Beli'))
+                          ]),
                     );
                   }),
             ),
