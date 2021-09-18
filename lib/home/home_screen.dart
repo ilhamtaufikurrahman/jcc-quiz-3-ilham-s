@@ -12,6 +12,7 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
+  int harga = 0;
   _HomescreenState();
   @override
   void initState() {
@@ -50,7 +51,7 @@ class _HomescreenState extends State<Homescreen> {
                   children: [
                     //## soal 4
                     //Tulis Coding disini
-                    Text("Rp  "),
+                    Text("Rp  " + harga.toString()),
 
                     //sampai disini
                     SizedBox(
@@ -84,7 +85,12 @@ class _HomescreenState extends State<Homescreen> {
                             Text(items[index].name),
                             Text(items[index].price.toString()),
                             ElevatedButton(
-                                onPressed: () {}, child: Text('Beli'))
+                                onPressed: () {
+                                  setState(() {
+                                    harga = harga + items[index].price;
+                                  });
+                                },
+                                child: Text('Beli'))
                           ]),
                     );
                   }),
